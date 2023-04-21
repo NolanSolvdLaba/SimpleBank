@@ -1,7 +1,5 @@
 package org.example;
-/* Branch class
-two private fields: branchName, location
- */
+import java.util.Objects;
 
 public class Branch {
     private String branchName;
@@ -26,6 +24,27 @@ public class Branch {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Branch branch = (Branch) o;
+        return Objects.equals(branchName, branch.branchName) && Objects.equals(location, branch.location);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(branchName, location);
+    }
+
+    @Override
+    public String toString() {
+        return "Branch{" +
+                "branchName='" + branchName + '\'' +
+                ", location='" + location + '\'' +
+                '}';
     }
 }
 
