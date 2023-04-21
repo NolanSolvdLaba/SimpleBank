@@ -10,7 +10,7 @@ public class Main {
         System.out.println("Are the two branches equal? " + phillyBranch.equals(newyorkBranch));
 
         Customer nolan = new Customer("Nolan Geiger", 53);
-        System.out.println("Customer's name is " + nolan.getName());
+        System.out.println("Customer's information is: " + nolan.toString());
 
         CreditReport riskyCustomer = new CreditReport(400, 100, 2);
         System.out.println(riskyCustomer.getCreditScore());
