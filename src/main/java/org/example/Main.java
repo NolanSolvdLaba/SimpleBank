@@ -24,10 +24,10 @@ public class Main {
         Transaction amazonPurchase = new Transaction(new Date(), 55.00);
         System.out.println(amazonPurchase.getDate());
 
-        Card freeMoney = new Card("1001415756667575");
+        Card freeMoney = new Card("1001415756667575", 10_000.00);
         System.out.println(freeMoney.getCardNumber());
 
-        SavingsAccount accountSavings = new SavingsAccount(300, 2.0, "Money market", "55",true);
+        SavingsAccount accountSavings = new SavingsAccount(300, 2.0, "Money market", "55",true, "Billy Big Bucks");
         System.out.println("Savings account balance is: " + accountSavings.getBalance());
 
         Loan myLoan = new Loan(20_000);

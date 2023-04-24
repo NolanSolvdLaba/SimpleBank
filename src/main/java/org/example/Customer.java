@@ -29,10 +29,9 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                '}';
+        return "the name of the customer is " +
+                 name + '\'' +
+                "and their id is " + id;
     }
 
     @Override

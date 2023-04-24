@@ -1,16 +1,20 @@
 package org.example;
 
 public abstract class Account {
+    protected final String accountNumber;
+
+    protected final String accountHolder;
     protected double balance;
     protected double interestRate;
     protected String accountType;
-    protected String accountNumber;
     protected boolean isActive;
 
-    public Account() {}
-
-    public Account(double balance) {
+    public Account(double balance, String accountType, String accountNumber, boolean isActive, String accountHolder) {
         this.balance = balance;
+        this.accountType = accountType;
+        this.accountNumber = accountNumber;
+        this.isActive = isActive;
+        this.accountHolder = accountHolder;
     }
 
     public double getBalance() {
@@ -41,9 +45,6 @@ public abstract class Account {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
 
     public boolean isActive() {
         return isActive;

@@ -1,12 +1,29 @@
 package org.example;
 
-public class SavingsAccount extends Account {
-    public SavingsAccount(double balance, double interestRate, String accountType, String accountNumber, boolean isActive) {
-        super(balance);
-        this.interestRate = interestRate;
-        this.accountType = accountType;
-        this.accountNumber = accountNumber;
-        this.isActive = isActive;
+public class SavingsAccount extends Account implements IAccountInfo{
+    public SavingsAccount(double balance, double interestRate, String accountType, String accountNumber, boolean isActive, String accountHolder) {
+        super(balance, accountType, accountNumber, isActive, accountHolder);
+        this.interestRate = 0.1;
+    }
+
+    @Override
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    @Override
+    public String getAccountHolderName() {
+        return accountHolder;
+    }
+
+    @Override
+    public String getAccountType() {
+        return accountType;
+    }
+
+    @Override
+    public double getAccountBalance() {
+        return getBalance();
     }
 
     @Override
@@ -23,12 +40,11 @@ public class SavingsAccount extends Account {
 
     @Override
     public String toString() {
-        return "SavingsAccount{" +
-                "balance=" + balance +
-                ", interestRate=" + interestRate +
-                ", accountType='" + accountType + '\'' +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", isActive=" + isActive +
-                '}';
+        return "This savings account's balance is" +
+                 balance +
+                ".  The interest rate is " + interestRate +
+                ". The type is '" + accountType + '\'' +
+                ". The number of the account is '" + accountNumber + '\'' +
+                ".  Is it active? " + isActive;
     }
 }
