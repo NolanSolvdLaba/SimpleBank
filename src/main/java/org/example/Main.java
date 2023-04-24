@@ -21,8 +21,6 @@ public class Main {
         Employee bankBoss = new Employee("Mr. Eugene", 500000);
         System.out.println(bankBoss.getSalary());
 
-        Transaction amazonPurchase = new Transaction(new Date(), 55.00);
-        System.out.println(amazonPurchase.getDate());
 
         Card freeMoney = new Card("1001415756667575", 10_000.00);
         System.out.println(freeMoney.getCardNumber());

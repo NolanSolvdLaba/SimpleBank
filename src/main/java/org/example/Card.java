@@ -17,6 +17,7 @@ public class Card implements ITransaction {
         this.cardNumber = cardNumber;
     }
 
+
     @Override
     public void deposit(double amount) {
         availableFunds += amount;
