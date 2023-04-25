@@ -1,5 +1,4 @@
 package org.example;
-import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,14 +14,12 @@ public class Main {
         CreditReport riskyCustomer = new CreditReport(400, 100, 2);
         System.out.println(riskyCustomer.getCreditScore());
 
-        Approval nolanLoan = new Approval(nolan, 780);
-        System.out.println(nolanLoan.getCreditRating());
 
         Employee bankBoss = new Employee("Mr. Eugene", 500000);
         System.out.println(bankBoss.getSalary());
 
 
-        Card freeMoney = new Card("1001415756667575", 10_000.00);
+        CreditCard freeMoney = new CreditCard("1001415756667575", 10_000.00);
         System.out.println(freeMoney.getCardNumber());
 
         SavingsAccount accountSavings = new SavingsAccount(300, 2.0, "Money market", "55",true, "Billy Big Bucks");

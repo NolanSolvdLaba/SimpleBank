@@ -1,12 +1,15 @@
 package org.example;
 
-public class Card implements ITransaction {
+public abstract class Card implements ITransaction {
     private String cardNumber;
     private double availableFunds;
 
     public Card(String cardNumber, double availableFunds) {
         this.cardNumber = cardNumber;
         this.availableFunds = availableFunds;
+    }
+
+    public Card(String cardNumber) {
     }
 
     public String getCardNumber() {
