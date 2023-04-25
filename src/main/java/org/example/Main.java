@@ -14,12 +14,10 @@ public class Main {
         CreditReport riskyCustomer = new CreditReport(400, 100, 2);
         System.out.println(riskyCustomer.getCreditScore());
 
-
         Employee bankBoss = new Employee("Mr. Eugene", 500000);
         System.out.println(bankBoss.getSalary());
 
-
-        CreditCard freeMoney = new CreditCard("1001415756667575", 10_000.00);
+        CreditCard freeMoney = new CreditCard("1001415756667575", 10_000.00, 1234);
         System.out.println(freeMoney.getCardNumber());
 
         SavingsAccount accountSavings = new SavingsAccount(300, 2.0, "Money market", "55",true, "Billy Big Bucks");

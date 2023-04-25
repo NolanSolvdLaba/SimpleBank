@@ -1,7 +1,7 @@
 package org.example;
 
 public abstract class Card implements ITransaction {
-    private String cardNumber;
+    protected final String cardNumber;
     private double availableFunds;
 
     public Card(String cardNumber, double availableFunds) {
@@ -10,14 +10,11 @@ public abstract class Card implements ITransaction {
     }
 
     public Card(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
+        return this.cardNumber;
     }
 
 
@@ -35,4 +32,5 @@ public abstract class Card implements ITransaction {
     public double getBalance() {
         return availableFunds;
     }
+
 }

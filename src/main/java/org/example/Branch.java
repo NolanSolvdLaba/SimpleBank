@@ -2,12 +2,19 @@ package org.example;
 import java.util.Objects;
 
 public final class  Branch {
+    private static int nextBranchID;
+
+    static {
+        nextBranchID = 1;
+    }
+    private final int branchID;
     private final String branchName;
     private final String location;
 
     public Branch(String branchName, String location) {
         this.branchName = branchName;
         this.location = location;
+        this.branchID = nextBranchID++;
     }
 
     public String getBranchName() {

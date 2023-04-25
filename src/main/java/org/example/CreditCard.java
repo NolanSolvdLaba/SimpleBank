@@ -7,10 +7,21 @@ public class CreditCard extends Card implements IRewards, ITransaction {
     //final = cannot be changed later
     private final double creditLimit;
 
-    public CreditCard(String cardNumber, double creditLimit) {
+    private final int pin;
+
+    public CreditCard(String cardNumber, double creditLimit, int pin) {
         super(cardNumber);
         this.creditLimit = creditLimit;
         this.rewardPoints = rewardPoints;
+        this.pin = pin;
+    }
+
+    public boolean authenticate(int enteredPin) {
+        if (pin == enteredPin) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public final void withdraw(double amount) {
