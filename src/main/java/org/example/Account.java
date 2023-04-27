@@ -5,7 +5,6 @@ public abstract class Account {
 
     protected final String accountHolder;
     protected double balance;
-    protected double interestRate;
     protected String accountType;
     protected boolean isActive;
 
@@ -25,13 +24,6 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public double getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
-    }
 
     public String getAccountType() {
         return accountType;

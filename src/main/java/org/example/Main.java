@@ -1,7 +1,9 @@
 package org.example;
 
+import org.example.exceptions.LoanAmountException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LoanAmountException {
         Branch phillyBranch = new Branch("Broadstreet Branch", "3601 S Broad St, Philadelphia, PA 19148");
         System.out.println(phillyBranch.getLocation());
 
@@ -23,7 +25,12 @@ public class Main {
         SavingsAccount accountSavings = new SavingsAccount(300, 2.0, "Money market", "55",true, "Billy Big Bucks");
         System.out.println("Savings account balance is: " + accountSavings.getBalance());
 
-        Loan myLoan = new Loan(20_000);
-        System.out.println(myLoan.getAmount());
+        Loan myLoan = null;
+        try {
+            myLoan = new Loan(0, 0.15, 60);
+        } catch (LoanAmountException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

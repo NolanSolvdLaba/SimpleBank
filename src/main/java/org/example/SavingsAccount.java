@@ -1,6 +1,8 @@
 package org.example;
 
 public class SavingsAccount extends Account implements IAccountInfo{
+    private final double interestRate;
+
     public SavingsAccount(double balance, double interestRate, String accountType, String accountNumber, boolean isActive, String accountHolder) {
         super(balance, accountType, accountNumber, isActive, accountHolder);
         this.interestRate = 0.1;
