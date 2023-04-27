@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.exceptions.InsufficientFundsException;
+
 public abstract class Card implements ITransaction {
     protected final String cardNumber;
     private double availableFunds;
@@ -24,8 +26,13 @@ public abstract class Card implements ITransaction {
     }
 
     @Override
-    public void withdraw(double amount) {
-        availableFunds -= amount;
+    public void withdraw(double amount) throws InsufficientFundsException {
+        if (amount > availableFunds) {
+            throw new InsufficientFundsException();
+        } else {
+            availableFunds -= amount;
+        }
+
     }
 
     @Override

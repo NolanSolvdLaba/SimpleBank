@@ -16,10 +16,10 @@ public class Main {
             System.out.println("An error occurred: " + e.getMessage());
         }
 
-        Customer nolan = new Customer("Nolan Geiger", 53);
+        Customer nolan = new Customer("Nolan Geiger");
         System.out.println("Customer's information is: " + nolan.toString());
 
-        Customer solarisAuthor = new Customer("Stanisław Lem", 54);
+        Customer solarisAuthor = new Customer("Stanisław Lem");
         System.out.println("Customer's information is: " + solarisAuthor.toString());
 
         try {

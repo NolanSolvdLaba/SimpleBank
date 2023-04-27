@@ -5,15 +5,21 @@ import org.example.exceptions.NonLatinateLetters;
 import java.util.Objects;
 
 public class Customer {
+    private static int maxId = 0;
     private String name;
     private int id;
 
-    public Customer(String name, int id) throws NonLatinateLetters {
+    static {
+        // Code in this block executes when the class is loaded
+        maxId = 1000;
+    }
+
+    public Customer(String name) throws NonLatinateLetters {
         if (!name.matches("\\p{IsLatin}+")) {
             throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
         }
         this.name = name;
-        this.id = id;
+        this.id = ++maxId;
     }
 
     public String getName() {

@@ -1,10 +1,10 @@
 package org.example;
 
+import org.example.exceptions.AuthenticationException;
+import org.example.exceptions.InsufficientFundsException;
+
 public class CreditCard extends Card implements IRewards, ITransaction {
     private int rewardPoints = 0;
-
-    //private = only accessible to the class' methods
-    //final = cannot be changed later
     private final double creditLimit;
 
     private final int pin;
@@ -16,15 +16,17 @@ public class CreditCard extends Card implements IRewards, ITransaction {
         this.pin = pin;
     }
 
-    public boolean authenticate(int enteredPin) {
+    public boolean authenticate(int enteredPin) throws AuthenticationException {
         if (pin == enteredPin) {
             return true;
         } else {
-            return false;
+            throw new AuthenticationException("Invalid PIN entered.");
         }
     }
 
-    public final void withdraw(double amount) {
+
+    @Override
+    public final void withdraw(double amount) throws InsufficientFundsException {
         if (amount <= creditLimit) {
             super.withdraw(amount);
         } else {
