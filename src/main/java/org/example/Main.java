@@ -25,12 +25,8 @@ public class Main {
         SavingsAccount accountSavings = new SavingsAccount(300, 2.0, "Money market", "55",true, "Billy Big Bucks");
         System.out.println("Savings account balance is: " + accountSavings.getBalance());
 
-        Loan myLoan = null;
-        try {
-            myLoan = new Loan(0, 0.15, 60);
-        } catch (LoanAmountException e) {
-            throw new RuntimeException(e);
-        }
+        //Testing the custom exception and LoanAmountException class
+        Loan myLoan = new Loan(0, 0.15, 60);
 
     }
 }
