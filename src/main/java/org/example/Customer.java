@@ -1,12 +1,17 @@
 package org.example;
 
+import org.example.exceptions.NonLatinateLetters;
+
 import java.util.Objects;
 
 public class Customer {
     private String name;
     private int id;
 
-    public Customer(String name, int id) {
+    public Customer(String name, int id) throws NonLatinateLetters {
+        if (!name.matches("\\p{IsLatin}+")) {
+            throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
+        }
         this.name = name;
         this.id = id;
     }
@@ -15,7 +20,10 @@ public class Customer {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws NonLatinateLetters {
+        if (!name.matches("\\p{IsLatin}+")) {
+            throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
+        }
         this.name = name;
     }
 
@@ -30,7 +38,7 @@ public class Customer {
     @Override
     public String toString() {
         return "the name of the customer is " +
-                 name + '\'' +
+                name + '\'' +
                 "and their id is " + id;
     }
 
@@ -47,3 +55,4 @@ public class Customer {
         return Objects.hash(name, id);
     }
 }
+

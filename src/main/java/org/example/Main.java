@@ -2,9 +2,10 @@ package org.example;
 
 import org.example.exceptions.CreditLowException;
 import org.example.exceptions.LoanAmountException;
+import org.example.exceptions.NonLatinateLetters;
 
 public class Main {
-    public static void main(String[] args) throws LoanAmountException, CreditLowException {
+    public static void main(String[] args) throws LoanAmountException, CreditLowException, NonLatinateLetters {
         Branch phillyBranch = new Branch("Broadstreet Branch", "3601 S Broad St, Philadelphia, PA 19148");
         System.out.println(phillyBranch.getLocation());
 
@@ -17,6 +18,9 @@ public class Main {
 
         Customer nolan = new Customer("Nolan Geiger", 53);
         System.out.println("Customer's information is: " + nolan.toString());
+
+        Customer solarisAuthor = new Customer("Stanisław Lem", 54);
+        System.out.println("Customer's information is: " + solarisAuthor.toString());
 
         try {
             CreditReport riskyCustomer = new CreditReport(250, 2, 5);
