@@ -1,20 +1,30 @@
 package org.example;
 
+import org.example.exceptions.CreditLowException;
 import org.example.exceptions.LoanAmountException;
 
 public class Main {
-    public static void main(String[] args) throws LoanAmountException {
+    public static void main(String[] args) throws LoanAmountException, CreditLowException {
         Branch phillyBranch = new Branch("Broadstreet Branch", "3601 S Broad St, Philadelphia, PA 19148");
         System.out.println(phillyBranch.getLocation());
 
-        Branch newyorkBranch = new Branch("5th Ave Branch", "555 5th Avenue, New York, NY 10110");
-        System.out.println("Are the two branches equal? " + phillyBranch.equals(newyorkBranch));
+        try {
+            Branch newyorkBranch = new Branch("5th Ave Branch", "555 5th Avenue, New York, NY 10110");
+            System.out.println("New York branch location: " + newyorkBranch.getLocation());
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
 
         Customer nolan = new Customer("Nolan Geiger", 53);
         System.out.println("Customer's information is: " + nolan.toString());
 
-        CreditReport riskyCustomer = new CreditReport(400, 100, 2);
-        System.out.println(riskyCustomer.getCreditScore());
+        try {
+            CreditReport riskyCustomer = new CreditReport(250, 2, 5);
+            System.out.println(riskyCustomer.getCreditScore());
+        } catch (CreditLowException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
 
         Employee bankBoss = new Employee("Mr. Eugene", 500000);
         System.out.println(bankBoss.getSalary());
@@ -25,8 +35,11 @@ public class Main {
         SavingsAccount accountSavings = new SavingsAccount(300, 2.0, "Money market", "55",true, "Billy Big Bucks");
         System.out.println("Savings account balance is: " + accountSavings.getBalance());
 
-        //Testing the custom exception and LoanAmountException class
-        Loan myLoan = new Loan(0, 0.15, 60);
+        try {
+            Loan myLoan = new Loan(0, 0.15, 60);
+        } catch (LoanAmountException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }

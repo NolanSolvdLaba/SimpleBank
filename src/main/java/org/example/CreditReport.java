@@ -1,26 +1,26 @@
 package org.example;
-/* CreditReport class
-3 private fields: creditScore, numLatePayments
-Methods: getters and setters for fields
- */
 
+import org.example.exceptions.CreditLowException;
 
 public class CreditReport {
     private int creditScore;
     private int numLatePayments;
     private int numAccounts;
 
-    public CreditReport(int creditScore, int numLatePayments, int numAccounts) {
-        this.creditScore = creditScore;
-        this.numLatePayments = numLatePayments;
-        this.numAccounts = numAccounts;
+    public CreditReport(int creditScore, int numLatePayments, int numAccounts) throws CreditLowException {
+        setCreditScore(creditScore);
+        setNumLatePayments(numLatePayments);
+        setNumAccounts(numAccounts);
     }
 
     public int getCreditScore() {
         return creditScore;
     }
 
-    public void setCreditScore(int creditScore) {
+    public void setCreditScore(int creditScore) throws CreditLowException {
+        if (creditScore < 300) {
+            throw new CreditLowException("Credit score is too low.");
+        }
         this.creditScore = creditScore;
     }
 
