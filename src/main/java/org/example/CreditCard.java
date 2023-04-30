@@ -6,7 +6,6 @@ import org.example.exceptions.InsufficientFundsException;
 public class CreditCard extends Card implements IRewards, ITransaction {
     private int rewardPoints = 0;
     private final double creditLimit;
-
     private final int pin;
 
     public CreditCard(String cardNumber, double creditLimit, int pin) {

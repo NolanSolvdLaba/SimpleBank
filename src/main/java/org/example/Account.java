@@ -2,7 +2,6 @@ package org.example;
 
 public abstract class Account {
     protected final String accountNumber;
-
     protected final String accountHolder;
     protected double balance;
     protected String accountType;
@@ -24,7 +23,6 @@ public abstract class Account {
         this.balance = balance;
     }
 
-
     public String getAccountType() {
         return accountType;
     }
@@ -36,7 +34,6 @@ public abstract class Account {
     public String getAccountNumber() {
         return accountNumber;
     }
-
 
     public boolean isActive() {
         return isActive;
