@@ -1,0 +1,6 @@
+2023-04-30 13:53:44.798 [main] INFO  org.example.Main - Starting the application
+2023-04-30 13:53:44.878 [main] INFO  org.example.Main - Exiting the application
+2023-04-30 14:27:49.085 [main] INFO  org.example.Main - Starting the application
+2023-04-30 14:27:49.114 [main] WARN  org.example.CreditCard - Transaction declined: Exceeds available funds and credit limit.
+2023-04-30 14:27:49.114 [main] ERROR org.example.CreditCard - Invalid PIN entered.
+2023-05-01 14:44:23.934 [main] INFO  org.example.Main - Starting the application

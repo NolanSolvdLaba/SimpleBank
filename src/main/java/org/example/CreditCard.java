@@ -3,7 +3,11 @@ package org.example;
 import org.example.exceptions.AuthenticationException;
 import org.example.exceptions.InsufficientFundsException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CreditCard extends Card implements IRewards, ITransaction {
+    private static final Logger logger = LogManager.getLogger(CreditCard.class);
     private int rewardPoints = 0;
     private final double creditLimit;
     private final int pin;
@@ -19,7 +23,9 @@ public class CreditCard extends Card implements IRewards, ITransaction {
         if (pin == enteredPin) {
             return true;
         } else {
-            throw new AuthenticationException("Invalid PIN entered.");
+            String errorMessage = "Invalid PIN entered.";
+            logger.error(errorMessage);
+            throw new AuthenticationException(errorMessage);
         }
     }
 
@@ -28,10 +34,13 @@ public class CreditCard extends Card implements IRewards, ITransaction {
     public final void withdraw(double amount) throws InsufficientFundsException {
         if (amount <= creditLimit) {
             super.withdraw(amount);
+            logger.info("Transaction of " + amount + " has been successfully processed.");
         } else {
-            System.out.println("Transaction declined: Exceeds available funds and credit limit");
+            logger.warn("Transaction declined: Exceeds available funds and credit limit.");
+            System.out.println("Transaction declined: Exceeds available funds and credit limit.");
         }
     }
+
 
     @Override
     public int getPointsEarned(double amountSpent) {
