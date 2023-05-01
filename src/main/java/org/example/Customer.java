@@ -4,6 +4,8 @@ import org.example.exceptions.NonLatinateLetters;
 
 import java.util.Objects;
 
+import static org.example.Main.logger;
+
 public class Customer {
     private static int maxId = 0;
     private String name;
@@ -15,11 +17,16 @@ public class Customer {
     }
 
     public Customer(String name) throws NonLatinateLetters {
-        if (!name.matches("\\p{IsLatin}+")) {
-            throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
+        try {
+            if (!name.matches("\\p{IsLatin}+")) {
+                throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
+            }
+            this.name = name;
+            this.id = ++maxId;
+        } catch (NonLatinateLetters e) {
+            logger.error("Error creating customer: " + e.getMessage());
+            throw e;
         }
-        this.name = name;
-        this.id = ++maxId;
     }
 
     public String getName() {
@@ -27,10 +34,15 @@ public class Customer {
     }
 
     public void setName(String name) throws NonLatinateLetters {
-        if (!name.matches("\\p{IsLatin}+")) {
-            throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
+        try {
+            if (!name.matches("\\p{IsLatin}+")) {
+                throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
+            }
+            this.name = name;
+        } catch (NonLatinateLetters e) {
+            logger.error("Error setting customer name: " + e.getMessage());
+            throw e;
         }
-        this.name = name;
     }
 
     public int getId() {

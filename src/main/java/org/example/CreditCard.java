@@ -6,17 +6,33 @@ import org.example.exceptions.InsufficientFundsException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+
 public class CreditCard extends Card implements IRewards, ITransaction {
+    private static final Set<String> cardNumbers = new HashSet<>();
     private static final Logger logger = LogManager.getLogger(CreditCard.class);
     private int rewardPoints = 0;
     private final double creditLimit;
     private final int pin;
 
-    public CreditCard(String cardNumber, double creditLimit, int pin) {
-        super(cardNumber);
+    public CreditCard(double creditLimit, int pin) {
+        super(generateUniqueCardNumber());
         this.creditLimit = creditLimit;
         this.rewardPoints = rewardPoints;
         this.pin = pin;
+    }
+
+    private static String generateUniqueCardNumber() {
+        String cardNumber;
+        do {
+            // Generate random 16-digit number
+            cardNumber = String.format("%016d", new Random().nextLong() % 10000000000000000L);
+        } while (cardNumbers.contains(cardNumber) || cardNumber.startsWith("-")); // Loop until unique number is found
+        cardNumbers.add(cardNumber); // Add to list of existing card numbers
+        return cardNumber;
     }
 
     public boolean authenticate(int enteredPin) throws AuthenticationException {
@@ -60,6 +76,10 @@ public class CreditCard extends Card implements IRewards, ITransaction {
 
     public int getRewardPoints() {
         return rewardPoints;
+    }
+
+    public static Set<String> getAllCardNumbers() {
+        return Collections.unmodifiableSet(cardNumbers);
     }
 }
 

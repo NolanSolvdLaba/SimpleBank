@@ -2,33 +2,51 @@ package org.example;
 
 import org.example.exceptions.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Set;
+
 public class Main {
-    private static final Logger logger = LogManager.getLogger(Main.class);
+    static final Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args) throws LoanAmountException, CreditLowException, NonLatinateLetters, InsufficientFundsException, AuthenticationException {
         logger.info("Starting the application");
-        GenericLinkedList accountSignups = new GenericLinkedList();
+        GenericLinkedList<Customer> sweepStakes = new GenericLinkedList<>();
 
-        Customer billyBucks = new Customer("Billy Bucks");
-        Customer maryMoneybags = new Customer("Mary Moneybags");
-        Customer sammySketchy = new Customer("Sammy Sketchy");
-        Customer vovanVovanovich = new Customer("Вован Вованович Копчак");
+        try {
+            Customer billyBucks = new Customer("Billy Bucks");
+            Customer maryMoneybags = new Customer("Mary Moneybags");
+            Customer sammySketchy = new Customer("Sammy Sketchy");
+            Customer ivanoStanislavov = new Customer("Ivano Stanisławów");
 
-        accountSignups.add(billyBucks);
-        accountSignups.add(maryMoneybags);
-        accountSignups.add(sammySketchy);
-        accountSignups.add(vovanVovanovich);
-
-        for (int i = 0; i < accountSignups.size(); i++) {
-            System.out.println(accountSignups.get(i));
+            sweepStakes.add(billyBucks);
+            sweepStakes.add(maryMoneybags);
+            sweepStakes.add(sammySketchy);
+            sweepStakes.add(ivanoStanislavov);
+        } catch (NonLatinateLetters e) {
+            logger.error("Error creating customer: " + e.getMessage());
         }
+
+        //logs an error becuase sweepStakes.add(invanoStanislavov)
+        //violates the NonLatinateLetters exception
+        for (int i = 0; i < sweepStakes.size(); i++) {
+            System.out.println(sweepStakes.get(i));
+        }
+
+        //instantiating instances of CreditCard
+        CreditCard firstCustomer = new CreditCard(10_000, 1234);
+        CreditCard secondCustomer = new CreditCard(2_000, 1234);
+        CreditCard thirdCustomer = new CreditCard(1_000, 1234);
+
+        //getting all instances above
+        Set<String> cardNumbers = CreditCard.getAllCardNumbers();
+
+        //printing the instances
+        for(String cardNumber: cardNumbers){
+            System.out.println(cardNumber);
+        }
+
+
 
         logger.info("Exiting the application");
     }
