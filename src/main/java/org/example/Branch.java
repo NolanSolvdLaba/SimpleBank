@@ -9,6 +9,7 @@ public final class Branch {
     static {
         nextBranchID = 1;
     }
+
     private final int branchID;
     private final String branchName;
     private final String location;
