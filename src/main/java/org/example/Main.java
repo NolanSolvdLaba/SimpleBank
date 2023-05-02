@@ -46,6 +46,15 @@ public class Main {
             System.out.println(cardNumber);
         }
 
+        //new bank branch
+        Branch phillyBranch = new Branch("Philly Branch", "55 Broad Street");
+
+        //adding 3 employees to the branch
+        phillyBranch.addEmployee(new Employee("Asema", 4000, "IT"));
+        phillyBranch.addEmployee(new Employee("Jenn", 4000, "Accounting"));
+        phillyBranch.addEmployee(new Employee("Nolan", 1, "IT"));
+
+        System.out.println(phillyBranch.searchEmployeesByDepartment("IT"));
 
 
         logger.info("Exiting the application");
