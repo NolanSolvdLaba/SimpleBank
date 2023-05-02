@@ -55,7 +55,7 @@ public class Main {
         phillyBranch.addEmployee(new Employee("Nolan", 1, "IT"));
 
         System.out.println(phillyBranch.searchEmployeesByDepartment("IT"));
-
+        System.out.println(phillyBranch.searchEmployeesByDepartment("Accounting"));
 
         logger.info("Exiting the application");
     }
