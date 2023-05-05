@@ -12,7 +12,17 @@ import java.util.Random;
 import java.util.Set;
 
 public class CreditCard extends Card implements IRewards, ITransaction {
+
     private static final Set<String> cardNumbers = new HashSet<>();
+    /*
+    i.) Set is static and final so that the CreditCard class
+    itself contains all cardNumbers.
+    ii.) HashSet chosen over TreeSet or LinkedHashSet for instance
+    because order of cardNumbers isn't relevant for the given class.
+    iii.) 'cardNumbers' collection is 'static' and 'final'
+    to ensure that all instances of 'CreditCard' are shared among the 'CreditCard' class
+    and are unmodifiable.
+    */
     private static final Logger logger = LogManager.getLogger(CreditCard.class);
     private int rewardPoints = 0;
     private final double creditLimit;

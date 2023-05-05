@@ -1,11 +1,18 @@
 package org.example;
 
-public class SavingsAccount extends Account implements IAccountInfo{
+import org.example.exceptions.InsufficientFundsException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SavingsAccount extends Account implements IAccountInfo {
     private final double interestRate;
+    private List<Transaction> transactionHistory;
 
     public SavingsAccount(double balance, double interestRate, String accountType, String accountNumber, boolean isActive, String accountHolder) {
         super(balance, accountType, accountNumber, isActive, accountHolder);
         this.interestRate = 0.1;
+        this.transactionHistory = new ArrayList<>();
     }
 
     @Override
@@ -32,13 +39,19 @@ public class SavingsAccount extends Account implements IAccountInfo{
     public void deposit(double amount) {
         double currentBalance = getBalance();
         setBalance(currentBalance + amount);
+        transactionHistory.add(new Transaction(amount));
     }
 
     @Override
-    public void withdraw(double amount) {
+    public void withdraw(double amount) throws InsufficientFundsException {
         double currentBalance = getBalance();
+        if (currentBalance < amount) {
+            throw new InsufficientFundsException();
+        }
         setBalance(currentBalance - amount);
+        transactionHistory.add(new Transaction(amount));
     }
+
 
     @Override
     public String toString() {

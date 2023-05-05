@@ -50,3 +50,13 @@
 2023-05-01 21:02:35.938 [main] ERROR org.example.Main - Error creating customer: Custom's name must be represented in latinate letters.
 2023-05-01 21:02:35.939 [main] ERROR org.example.Main - Error creating customer: Custom's name must be represented in latinate letters.
 2023-05-01 21:02:36.030 [main] INFO  org.example.Main - Exiting the application
+2023-05-02 11:46:03.098 [main] INFO  org.example.Main - Starting the application
+2023-05-02 11:46:03.218 [main] ERROR org.example.Main - Error creating customer: Custom's name must be represented in latinate letters.
+2023-05-02 11:46:03.219 [main] ERROR org.example.Main - Error creating customer: Custom's name must be represented in latinate letters.
+2023-05-02 11:46:03.448 [main] INFO  org.example.Main - Exiting the application
+2023-05-02 11:47:50.168 [main] ERROR org.example.Main - Error creating customer: Custom's name must be represented in latinate letters.
+2023-05-05 11:13:58.841 [main] ERROR org.example.Main - Error creating customer: Custom's name must be represented in latinate letters.
+2023-05-05 13:50:33.239 [main] ERROR org.example.Main - Error creating customer: Custom's name must be represented in latinate letters.
+2023-05-05 14:06:28.315 [main] INFO  org.example.Main - Exiting the application
+2023-05-05 14:13:42.144 [main] INFO  org.example.Main - Exiting the application
+2023-05-05 14:14:48.152 [main] INFO  org.example.Main - Exiting the application

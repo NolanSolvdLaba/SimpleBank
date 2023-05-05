@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.exceptions.InsufficientFundsException;
+
 public abstract class Account {
     protected final String accountNumber;
     protected final String accountHolder;
@@ -45,5 +47,5 @@ public abstract class Account {
 
     public abstract void deposit(double amount);
 
-    public abstract void withdraw(double amount);
+    public abstract void withdraw(double amount) throws InsufficientFundsException;
 }

@@ -7,8 +7,11 @@ import java.util.Objects;
 import static org.example.Main.logger;
 
 public class Customer {
+
+
     private static int maxId = 0;
-    private String name;
+    private String firstName;
+    private String lastName;
     private int id;
 
     static {
@@ -16,31 +19,32 @@ public class Customer {
         maxId = 1000;
     }
 
-    public Customer(String name) throws NonLatinateLetters {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) throws NonLatinateLetters {
         try {
-            if (!name.matches("\\p{IsLatin}+")) {
-                throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
+            if (!firstName.matches("\\p{IsLatin}+")) {
+                throw new NonLatinateLetters("Customer's first name must be represented in latinate letters.");
             }
-            this.name = name;
-            this.id = ++maxId;
+            this.firstName = firstName;
         } catch (NonLatinateLetters e) {
-            logger.error("Error creating customer: " + e.getMessage());
+            logger.error("Error setting customer first name: " + e.getMessage());
             throw e;
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) throws NonLatinateLetters {
+    public Customer(String firstName, String lastName) throws NonLatinateLetters {
         try {
-            if (!name.matches("\\p{IsLatin}+")) {
+            if (!firstName.matches("\\p{IsLatin}+") || !lastName.matches("\\p{IsLatin}+")) {
                 throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
             }
-            this.name = name;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.id = ++maxId;
         } catch (NonLatinateLetters e) {
-            logger.error("Error setting customer name: " + e.getMessage());
+            logger.error("Error creating customer: " + e.getMessage());
             throw e;
         }
     }
@@ -56,7 +60,7 @@ public class Customer {
     @Override
     public String toString() {
         return "the name of the customer is " +
-                name + '\'' +
+                firstName + " " +lastName + '\'' +
                 "and their id is " + id;
     }
 
@@ -65,12 +69,12 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id == customer.id && Objects.equals(name, customer.name);
+        return id == customer.id && Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id);
+        return Objects.hash(firstName, lastName, id);
     }
 }
 

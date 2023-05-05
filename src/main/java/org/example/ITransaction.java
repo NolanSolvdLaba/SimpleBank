@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.exceptions.InsufficientFundsException;
 
+
 public interface ITransaction {
     void deposit(double amount);
     void withdraw(double amount) throws InsufficientFundsException;
@@ -11,4 +12,5 @@ public interface ITransaction {
     int getPointsEarned(double amountSpent);
 
     void redeemPoints(int pointsToRedeem);
+
 }
