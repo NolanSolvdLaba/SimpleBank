@@ -3,6 +3,8 @@ package org.example;
 import org.example.exceptions.NonLatinateLetters;
 
 import java.util.Objects;
+import java.util.Map;
+import java.util.HashMap;
 
 import static org.example.Main.logger;
 
@@ -13,14 +15,40 @@ public class Customer {
     private String firstName;
     private String lastName;
     private int id;
+    private Map<String, Account> accounts;
 
     static {
         // Code in this block executes when the class is loaded
         maxId = 1000;
     }
 
+    public Customer(String firstName, String lastName) throws NonLatinateLetters {
+        try {
+            if (!firstName.matches("\\p{IsLatin}+") || !lastName.matches("\\p{IsLatin}+")) {
+                throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
+            }
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.id = ++maxId;
+            this.accounts = new HashMap<>();
+        } catch (NonLatinateLetters e) {
+            logger.error("Error creating customer: " + e.getMessage());
+            throw e;
+        }
+    }
+
+
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFullName(){
+        String fullName = firstName + ' ' + lastName;
+        return fullName;
     }
 
     public void setFirstName(String firstName) throws NonLatinateLetters {
@@ -35,20 +63,6 @@ public class Customer {
         }
     }
 
-    public Customer(String firstName, String lastName) throws NonLatinateLetters {
-        try {
-            if (!firstName.matches("\\p{IsLatin}+") || !lastName.matches("\\p{IsLatin}+")) {
-                throw new NonLatinateLetters("Custom's name must be represented in latinate letters.");
-            }
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.id = ++maxId;
-        } catch (NonLatinateLetters e) {
-            logger.error("Error creating customer: " + e.getMessage());
-            throw e;
-        }
-    }
-
     public int getId() {
         return id;
     }
@@ -57,12 +71,42 @@ public class Customer {
         this.id = id;
     }
 
+    public Account getAccountByCurrency(String currency) {
+        try {
+            return accounts.values().stream()
+                    .filter(account -> account.getCurrencyType().equals(currency))
+                    .findFirst()
+                    .get();
+        } catch (Exception e) {
+            logger.error("Error getting account by currency: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+    public Map<String, Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Map<String, Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public void addAccount(Account account){
+        accounts.put(account.getCurrencyType(), account);
+    }
+
+
     @Override
     public String toString() {
-        return "the name of the customer is " +
-                firstName + " " +lastName + '\'' +
-                "and their id is " + id;
+        String str = "Customer: " + firstName + " " + lastName + " (ID: " + id + ")\n";
+        str += "Accounts:\n";
+        for (Account account : accounts.values()) {
+            str += account + "\n";
+        }
+        return str;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -76,5 +120,6 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(firstName, lastName, id);
     }
+
 }
 

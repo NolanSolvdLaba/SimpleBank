@@ -3,18 +3,15 @@ package org.example;
 import org.example.exceptions.InsufficientFundsException;
 
 public abstract class Account {
-    protected final String accountNumber;
-    protected final String accountHolder;
     protected double balance;
-    protected String accountType;
     protected boolean isActive;
 
-    public Account(double balance, String accountType, String accountNumber, boolean isActive, String accountHolder) {
+    protected final String currencyType;
+
+    public Account(double balance, String accountType, boolean isActive, String currencyType) {
         this.balance = balance;
-        this.accountType = accountType;
-        this.accountNumber = accountNumber;
         this.isActive = isActive;
-        this.accountHolder = accountHolder;
+        this.currencyType = currencyType;
     }
 
     public double getBalance() {
@@ -25,16 +22,8 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
+    public String getCurrencyType() {
+        return currencyType;
     }
 
     public boolean isActive() {
@@ -44,6 +33,9 @@ public abstract class Account {
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
+
+    public abstract String getAccountNumber();
+
 
     public abstract void deposit(double amount);
 
