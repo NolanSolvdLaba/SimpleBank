@@ -137,3 +137,25 @@
 2023-05-05 17:48:17.989 [main] INFO  org.example.Main - Retrieving the 'Peso' account in ericLindros
 2023-05-05 17:48:17.991 [main] ERROR org.example.Main - Error getting account by currency: No value present
 2023-05-05 17:48:17.992 [main] INFO  org.example.Main - Exiting the application
+2023-05-07 17:00:32.310 [main] INFO  org.example.Main - Starting the application
+2023-05-07 17:00:32.318 [main] INFO  org.example.Main - Exiting the application
+2023-05-07 18:14:12.283 [main] INFO  org.example.Main - Starting the application
+2023-05-07 18:14:12.288 [main] INFO  org.example.Main - Attempting to write string content to .txt file
+2023-05-07 18:14:12.328 [main] INFO  org.example.Main - File has been successfully written
+2023-05-07 18:14:12.328 [main] INFO  org.example.Main - Exiting the application
+2023-05-07 18:14:43.165 [main] INFO  org.example.Main - Starting the application
+2023-05-07 18:14:43.185 [main] INFO  org.example.Main - Attempting to write string content to .txt file
+2023-05-07 18:14:43.212 [main] INFO  org.example.Main - File has been successfully written
+2023-05-07 18:14:43.212 [main] INFO  org.example.Main - Exiting the application
+2023-05-07 19:09:12.916 [main] INFO  org.example.Main - Starting the application
+2023-05-07 19:09:12.922 [main] INFO  org.example.Main - Attempting to write string content to .txt file
+2023-05-07 19:09:12.948 [main] INFO  org.example.Main - File has been successfully written
+2023-05-07 19:09:12.949 [main] INFO  org.example.Main - Attempting to read the unique words in interOfficeEmail.txt
+2023-05-07 19:09:12.952 [main] ERROR org.example.Main - The following error occurred: java.io.FileNotFoundException: src\data\SimpleBankMissionStatement (The system cannot find the file specified)
+2023-05-07 19:09:12.953 [main] INFO  org.example.Main - Exiting the application
+2023-05-07 19:09:55.048 [main] INFO  org.example.Main - Starting the application
+2023-05-07 19:09:55.056 [main] INFO  org.example.Main - Attempting to write string content to .txt file
+2023-05-07 19:09:55.096 [main] INFO  org.example.Main - File has been successfully written
+2023-05-07 19:09:55.096 [main] INFO  org.example.Main - Attempting to read the unique words in interOfficeEmail.txt
+2023-05-07 19:09:55.139 [main] INFO  org.example.Main - Number of unique words successfully determined
+2023-05-07 19:09:55.139 [main] INFO  org.example.Main - Exiting the application

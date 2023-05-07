@@ -1,85 +1,63 @@
 package org.example;
 
-import org.example.exceptions.*;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Set;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Arrays;
 
 public class Main {
     static final Logger logger = LogManager.getLogger(Main.class);
-    public static void main(String[] args) throws LoanAmountException, CreditLowException, NonLatinateLetters, InsufficientFundsException, AuthenticationException {
+    public static void main(String[] args) throws IOException {
+        logger.info("Starting the application");
 
-        GenericLinkedList<Customer> sweepStakes = new GenericLinkedList<>();
+        //Specifying where the file will be written to
+        //Creating a string to add to the file
+        File email = new File("src/data/interOfficeEmail.txt");
+        String emailContent = "Hello, I would like to transfer a customer's money to my personal account.";
 
-        Customer billyBucks = new Customer("Billy", "Bucks");
-        Customer maryMoneybags = new Customer("Mary", "Moneybags");
-        Customer sammySketchy = new Customer("Sammy", "Sketchy");
 
-        sweepStakes.add(billyBucks);
-        sweepStakes.add(maryMoneybags);
-        sweepStakes.add(sammySketchy);
+        logger.info("Attempting to write string content to .txt file");
+        try {
+            //writing the file
+            FileUtils.write(email, emailContent, Charset.defaultCharset());
 
-        System.out.println("\n----------------------------------\n");
-        logger.info("Printing out sweepStakes...");
-        System.out.println(sweepStakes.toString());
-
-        sweepStakes.remove(billyBucks);
-
-        logger.info("Printing out sweepStakes having removed one member...");
-        System.out.println(sweepStakes.toString());
-        System.out.println("\n----------------------------------\n");
-
-        //instantiating instances of CreditCard
-        CreditCard firstCustomer = new CreditCard(10_000, 1234);
-        CreditCard secondCustomer = new CreditCard(2_000, 1234);
-        CreditCard thirdCustomer = new CreditCard(1_000, 1234);
-
-        //getting all instances above
-        Set<String> cardNumbers = CreditCard.getAllCardNumbers();
-
-        //printing the instances
-        logger.info("Printing cardNumbers...");
-        for(String cardNumber: cardNumbers){
-            System.out.println(cardNumber);
+            logger.info("File has been successfully written");
+        } catch (IOException e){
+            logger.error("This file could not be written: " + e);
         }
-        System.out.println("\n----------------------------------\n");
 
-        //new bank branch
-        Branch phillyBranch = new Branch("Philly Branch", "55 Broad Street");
+        //Reading the number of unique words in SimpleBankMissionStatement.txt
+        logger.info("Attempting to read the unique words in interOfficeEmail.txt");
 
-        //adding 3 employees to the branch
-        phillyBranch.addEmployee(new Employee("Asema", 4000, "IT"));
-        phillyBranch.addEmployee(new Employee("Jenn", 4000, "Accounting"));
-        phillyBranch.addEmployee(new Employee("Nolan", 1, "IT"));
+        //the file we are reading
+        File missionStatement = new File("src/data/SimpleBankMissionStatement.txt");
 
+        try {
+            //converting file content to string
+            String missionStatementContent = FileUtils.readFileToString(missionStatement, "UTF-8");
 
-        logger.info("Printing cardNumbers...");
-        System.out.println(phillyBranch.searchEmployeesByDepartment("IT"));
-        System.out.println(phillyBranch.searchEmployeesByDepartment("Accounting"));
-        System.out.println("\n----------------------------------\n");
+            //normalizing the string
+            String normalizedStatement = missionStatementContent.toLowerCase().replace("[^a-z\\s]", "");
 
-        //new Customer class implementing the accounts map in the Customer class
-        Customer ericLindros = new Customer("Eric", "Lindros");
+            //normalized statement broken into words
+            String[] words = StringUtils.split(normalizedStatement);
 
-        //instantiating accounts for ericLindros (SavingsAccount class instantiation)
-        SavingsAccount yenAccount = new SavingsAccount(1_000, .15, "Yen", true, ericLindros.getFullName());
-        SavingsAccount pesoAccount = new SavingsAccount(1_000, .15, "Peso", true, ericLindros.getFullName());
-        SavingsAccount euroAccount = new SavingsAccount(1_000, .15, "Euro", true, ericLindros.getFullName());
+            //using stream to find unique words
+            //count() method returns long, not int
+            long uniqueWordCount = Arrays.stream(words).distinct().count();
 
-        //adding the accounts to ericLindros
-        ericLindros.addAccount(yenAccount);
-        ericLindros.addAccount(pesoAccount);
-        ericLindros.addAccount(euroAccount);
-
-        logger.info("Retrieving the 'Peso' account in ericLindros");
-        System.out.println(ericLindros.getAccountByCurrency("Peso")+ "\n");
-        logger.info("Retrieving the 'Peso' account in ericLindros");
-        System.out.println(ericLindros.getAccountByCurrency("Shilling"));
-        System.out.println("\n----------------------------------\n");
-
-        //
+            //returning the number of unique words
+            System.out.println("Number of unique words: " + uniqueWordCount);
+            logger.info("Number of unique words successfully determined");
+        } catch (IOException e) {
+            logger.error("The following error occurred: " + e);
+        }
 
         logger.info("Exiting the application");
     }
