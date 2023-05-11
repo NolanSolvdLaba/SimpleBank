@@ -1,7 +1,11 @@
 package org.example;
+
+import org.example.enums.BranchType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 
 public final class Branch {
     private static int nextBranchID;
@@ -11,23 +15,24 @@ public final class Branch {
     }
 
     private final int branchID;
-    private final String branchName;
     private final String location;
+
+    private final BranchType branchType;
     private final List<Employee> employees;
 
-    public Branch(String branchName, String location) {
-        this.branchName = branchName;
+    public Branch(String location, BranchType branchType) {
         this.location = location;
+        this.branchType= branchType;
         this.branchID = nextBranchID++;
         this.employees = new ArrayList<>();
     }
 
-    public String getBranchName() {
-        return branchName;
-    }
-
     public String getLocation() {
         return location;
+    }
+
+    public BranchType getBranchType() {
+        return branchType;
     }
 
     public void addEmployee(Employee employee) {
@@ -73,19 +78,17 @@ public final class Branch {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Branch branch = (Branch) o;
-        return Objects.equals(branchName, branch.branchName) && Objects.equals(location, branch.location);
+        return branchID == branch.branchID && Objects.equals(location, branch.location);
     }
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(branchName, location);
+        return Objects.hash(branchID, location);
     }
 
     @Override
     public String toString() {
-        return "Branch{" +
-                "branchName='" + branchName + '\'' +
-                ", location='" + location + '\'' +
-                '}';
+        return "This branch is located at " + location + "and it is a " + branchType;
     }
 }

@@ -4,6 +4,7 @@ import org.example.exceptions.InsufficientFundsException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.interfaces.ITransaction;
 
 
 public abstract class Card implements ITransaction {
@@ -34,7 +35,7 @@ public abstract class Card implements ITransaction {
     @Override
     public void withdraw(double amount) throws InsufficientFundsException {
         if (amount > availableFunds) {
-            logger.error("Insufficient funds to withdraw amount: ", amount);
+            logger.error("Insufficient funds to withdraw amount: " + amount);
             throw new InsufficientFundsException();
         } else {
             availableFunds -= amount;

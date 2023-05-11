@@ -2,24 +2,19 @@ package org.example;
 
 import org.example.exceptions.NonLatinateLetters;
 
-import java.util.Objects;
-import java.util.Map;
 import java.util.HashMap;
-
-import static org.example.Main.logger;
+import java.util.Map;
+import java.util.Objects;
 
 public class Customer {
-
-
-    private static int maxId = 0;
     private String firstName;
     private String lastName;
     private int id;
     private Map<String, Account> accounts;
-
+    private static int counter;
     static {
         // Code in this block executes when the class is loaded
-        maxId = 1000;
+        counter = 1000;
     }
 
     public Customer(String firstName, String lastName) throws NonLatinateLetters {
@@ -29,10 +24,10 @@ public class Customer {
             }
             this.firstName = firstName;
             this.lastName = lastName;
-            this.id = ++maxId;
+            id = counter++;
             this.accounts = new HashMap<>();
         } catch (NonLatinateLetters e) {
-            logger.error("Error creating customer: " + e.getMessage());
+            System.out.println("Error creating customer: " + e.getMessage());
             throw e;
         }
     }
@@ -58,7 +53,7 @@ public class Customer {
             }
             this.firstName = firstName;
         } catch (NonLatinateLetters e) {
-            logger.error("Error setting customer first name: " + e.getMessage());
+            System.out.println("Error setting customer first name: " + e.getMessage());
             throw e;
         }
     }
@@ -71,29 +66,12 @@ public class Customer {
         this.id = id;
     }
 
-    public Account getAccountByCurrency(String currency) {
-        try {
-            return accounts.values().stream()
-                    .filter(account -> account.getCurrencyType().equals(currency))
-                    .findFirst()
-                    .get();
-        } catch (Exception e) {
-            logger.error("Error getting account by currency: " + e.getMessage());
-            return null;
-        }
-    }
-
-
     public Map<String, Account> getAccounts() {
         return accounts;
     }
 
     public void setAccounts(Map<String, Account> accounts) {
         this.accounts = accounts;
-    }
-
-    public void addAccount(Account account){
-        accounts.put(account.getCurrencyType(), account);
     }
 
 

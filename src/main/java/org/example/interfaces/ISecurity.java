@@ -1,6 +1,6 @@
-package org.example;
+package org.example.interfaces;
 
-public interface ISecurity {
+interface ISecurity {
     void lock();
     void unlock();
     boolean isLocked();

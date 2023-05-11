@@ -1,13 +1,15 @@
 package org.example;
 
+import org.example.enums.Department;
+
 import java.util.Objects;
 
 public class Employee {
     private String name;
     private double salary;
-    private String department;
+    private Department department;
 
-    public Employee(String name, double salary, String department) {
+    public Employee(String name, double salary, Department department) {
         this.name = name;
         this.salary = salary;
         this.department = department;
@@ -29,11 +31,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 

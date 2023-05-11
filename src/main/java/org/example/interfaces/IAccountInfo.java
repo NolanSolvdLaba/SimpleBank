@@ -1,6 +1,6 @@
-package org.example;
+package org.example.interfaces;
 
-public interface IAccountInfo {
+interface IAccountInfo {
         public String getAccountNumber();
         public String getAccountHolderName();
         public String getCurrencyType();
