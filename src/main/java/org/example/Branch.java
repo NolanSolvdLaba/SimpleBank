@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 public final class Branch {
     private static int nextBranchID;
 
@@ -15,9 +14,11 @@ public final class Branch {
     }
 
     private final int branchID;
+
     private final String location;
 
     private final BranchType branchType;
+
     private final List<Employee> employees;
 
     public Branch(String location, BranchType branchType) {
@@ -66,7 +67,7 @@ public final class Branch {
     public List<Employee> searchEmployeesByDepartment(String department) {
         List<Employee> result = new ArrayList<>();
         for (Employee employee : employees) {
-            if (employee.getDepartment().equals(department)) {
+            if (employee.getDepartment().getDepartmentName().equals(department)) {
                 result.add(employee);
             }
         }
@@ -81,7 +82,6 @@ public final class Branch {
         return branchID == branch.branchID && Objects.equals(location, branch.location);
     }
 
-
     @Override
     public int hashCode() {
         return Objects.hash(branchID, location);
@@ -91,4 +91,5 @@ public final class Branch {
     public String toString() {
         return "This branch is located at " + location + "and it is a " + branchType;
     }
+
 }

@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.interfaces.ITransaction;
 
-
 public abstract class Card implements ITransaction {
     private static final Logger logger = LogManager.getLogger(Card.class);
     protected final String cardNumber;
@@ -25,11 +24,10 @@ public abstract class Card implements ITransaction {
         return this.cardNumber;
     }
 
-
     @Override
     public void deposit(double amount) {
         availableFunds += amount;
-        logger.info("Successfully deposited amount: {}", amount);
+        logger.info("Successfully deposited amount: " + amount);
     }
 
     @Override
@@ -39,14 +37,13 @@ public abstract class Card implements ITransaction {
             throw new InsufficientFundsException();
         } else {
             availableFunds -= amount;
-            logger.info("Successfully withdrew amount: ", amount);
+            logger.info("Successfully withdrew amount: " + amount);
         }
-
     }
 
     @Override
     public double getBalance() {
-        logger.info("Retrieved balance: ", availableFunds);
+        logger.info("Retrieved balance: " + availableFunds);
         return availableFunds;
     }
 

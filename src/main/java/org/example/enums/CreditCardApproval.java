@@ -19,12 +19,8 @@ public enum CreditCardApproval {
 
     public static CreditCard processApplication(boolean isApproved, String cardNumber) {
         if (isApproved) {
-            //create new credit card instance if approved
-            //creditLimit set to zero
             System.out.println(CreditCardApproval.APPROVED);
             return new CreditCard(cardNumber, 0);
-        } else if (CreditCardApproval.PENDING.equals(CreditCardApproval.PENDING)) {
-            System.out.println(CreditCardApproval.PENDING);
         } else {
             System.out.println(CreditCardApproval.REJECTED);
         }

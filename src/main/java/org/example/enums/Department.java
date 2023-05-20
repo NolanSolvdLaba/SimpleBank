@@ -1,5 +1,8 @@
 package org.example.enums;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public enum Department {
     IT("Information Technology"),
     HR("Human Resources"),
@@ -18,10 +21,9 @@ public enum Department {
 
     public String getAbbreviation() {
         String[] words = departmentName.split(" ");
-        StringBuilder abbreviation = new StringBuilder();
-        for (String word : words) {
-            abbreviation.append(word.charAt(0));
-        }
-        return abbreviation.toString();
+        return Arrays.stream(words)
+                .map(word -> String.valueOf(word.charAt(0)))
+                .collect(Collectors.joining());
     }
+
 }

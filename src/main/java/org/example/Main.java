@@ -9,35 +9,44 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.*;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class Main {
 
-    private static final Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args) throws LoanAmountException, CreditLowException, NonLatinateLetters, InsufficientFundsException, AuthenticationException {
-        //3 Custom lambdas
+        //7 Streams with terminal and non-terminal operations
 
-        //1. Filter branches by type with Predicate
+        //STREAM 1: Creating a COLLECTION of branches and using a STREAM to print each
         System.out.println("-----------------------");
         List<Branch> branches = new ArrayList<>();
         branches.add(new Branch("33 S Broad St", BranchType.KIOSK));
         branches.add(new Branch("40 S Broad St", BranchType.BUSINESS_BRANCH));
         branches.add(new Branch("3601 S Broad St", BranchType.KIOSK));
 
+        //Defining the predicate for filtering
         Predicate<Branch> filterByType = (branch) -> branch.getBranchType() == BranchType.KIOSK;
+
+        //Using a stream to print each branch of type KIOSK
         branches.stream()
+                //Intermediate/NON-TERMINAL: filtering branches by type
                 .filter(filterByType)
+                //TERMINAL: processes each KIOSK, consuming the stream, and printing each to the console
                 .forEach(System.out::println);
         System.out.println("----------------------\n");
 
-        //2. Consumer to change employee's department
+        //STREAM 2: Department.java includes a stream
         System.out.println("-----------------------");
+
+        //Printing out the department names and abbreviations from Department.java enum
+        for(Department department : Department.values()){
+            System.out.printf("Department %-20s Abbreviation: %s\n", department.getDepartmentName(), department.getAbbreviation());
+        }
+        System.out.println("----------------------\n");
+
+        System.out.println("-----------------------");
+
         Employee johnnyTech = new Employee("Johnny Tech", 5_000, Department.IT);
 
         //consumer takes input and performs action on the input
         Consumer<Employee> changeDepartment = (employee) -> employee.setDepartment(Department.MARKETING);
-
 
         changeDepartment.accept(johnnyTech);
         System.out.println(johnnyTech.getDepartment());
