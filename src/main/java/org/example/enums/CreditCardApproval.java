@@ -3,7 +3,6 @@ package org.example.enums;
 import org.example.CreditCard;
 
 public enum CreditCardApproval {
-    PENDING("Application is under review"),
     APPROVED("Application is approved"),
     REJECTED("Application is rejected");
 
